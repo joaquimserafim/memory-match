@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Memory match</title>
+  <link href="app.css" rel="stylesheet">
+</head>
+<body>
+  <div><h1>Memory Match</h1></div>
+  <!-- Game -->
+  <div id="gameTable"><h1>ARE YOU AFRAID</h1></div>
+  <!-- Timer and count moves -->
+  <div id="counter-div">
+    <input id="counter" type="text" value="00:00:00">
+    <input id="moves" type="text" value="" placeholder="n. moves" disabled>
+  </div>
+  <!-- Control buttons -->
+  <div id="game-buttons" class="game-buttons">
+    <button id="btnStart" type="button">start</button>
+    <button id="btnStop" type="button" disabled>stop</button>
+    <button id="btnReload0" type="button">reload</button>
+  </div>
+  <!-- Stop  Game -->
+  <div id="block" class="game-buttons">
+    <button id="btnResume" type="button">resume</button>
+    <button id="btnReload1" type="button">reload</button>
+  </div>
+  <script src="request.js"></script>
+  <script src="game.js"></script>
+  <script src="counter.js"></script>
+  <script>
+    // MAIN
+    (function () {
+      'use strict';
+      // game status, when stop the game and want to continue will prevent to start from begin
+      var gameStarted = 0;
+      // table game
+      var gameTable = document.getElementById('gameTable');
+      // block view
+      var block = document.getElementById('block');
+      // button start game
+      var btnStart = document.getElementById('btnStart');
+      // button stop game
+      var btnStop = document.getElementById('btnStop');
+      // button stop game
+      var btnResume = document.getElementById('btnResume');
+      // button reload 0
+      var btnReload0 = document.getElementById('btnReload0');
+      // button reload 1
+      var btnReload1 = document.getElementById('btnReload1');
+      // counter element
+      var txtCounter = document.getElementById('counter');
+      // moves element
+      var txtMoves = document.getElementById('moves');
+      // Counter object
+      var counter = new Counter(txtCounter);
+      // Game
+      var game = new Game(Request, gameTable, txtCounter, txtMoves);
+
+      /**
+       * reload window
+       */
+      function reload () {
+        // reload window
+        return window.location.reload();
+      }
+
+      // Start click event
+      btnStart.onclick = function () {
+        btnStart.disabled = true;
+        btnStop.disabled = false;
+        // start the counter or resume it
+        counter.start();
+        // only load game if not started
+        if (!gameStarted) {
+          // load game structure
+          game.load();
+          // set to 1
+          gameStarted = 1;
+          return;
+        }
+      };
+
+      // resume game
+      btnResume.onclick = function () {
+        block.style.display = 'none';
+        btnStop.disabled = false;
+        // start the counter or resume it
+        counter.start();
+      };
+
+      // stop event click
+      btnStop.onclick = function () {
+        block.style.display = 'inline';
+        btnStop.disabled = true;
+        // suspend counter
+        counter.stop();
+      };
+
+      // Reload click event
+      btnReload0.onclick = btnReload1.onclick = reload;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+html, body {
+  width:100%;
+  height:100%;
+  margin:0;
+  padding:0;
+}
+/**/
+.game-buttons {
+  padding-top: 40px;
+  text-align: center;
+}
+#counter-div {
+  padding-top: 20px;
+  text-align: center;
+}
+
+#counter-div input {
+  border: 1px solid black;
+  text-align: right;
+  width: 50px;
+}
+
+.game-buttons button {
+  font-size: 14px;
+  cursor: pointer;
+  width: 70px;
+}
+
+#gameTable {
+  margin-left: auto ;
+  margin-right: auto ;
+  min-height: 300px;
+  min-width: 300px;
+  width: 620px;
+  height: 310px;
+  border-width: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  background-color: #0b281f;
+  -webkit-border-radius: 2spx;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+
+#block {
+  background-color:#ccc;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding-top: 50px;
+  top: 0;
+  right: 0;
+  z-index: 10000;
+  display: none;
+  opacity: 0.96;
+}
+
+#finish {
+  background-color: #ccc48b;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  padding-top: 200px;
+  top: 0;
+  right: 0;
+  z-index: 900;
+  display: none;
+  opacity: 0.96;
+}
+
+#gameTable h1 {
+  color: #fff;
+}
+
+/**/
+.div-row {
+  padding: 2px;
+}
+/**/
+.div-col {
+  float: left;
+  padding: 2px;
+}
+/**/
+img {
+  width: 95px;
+  height: 95px;
+  cursor: pointer;
+}
+/**/
+div > h1 {
+  text-align: center;
+}
